@@ -16,12 +16,10 @@ This regex pattern is crucial for developers looking to implement robust passwor
 
 - [Anchors](#anchors)
 - [Quantifiers](#quantifiers)
-- [The OR Operator](#the-or-operator)
 - [Character Classes](#character-classes)
-- [Grouping and Capturing](#grouping-and-capturing)
-- [Bracket Expressions](#bracket-expressions)
-- [Back-references](#back-references)
-- [Look-ahead and Look-behind](#look-ahead-and-look-behind)
+- [Lookahead Assertions](#lookahead-assertions)
+- [Examples](#examples)
+- [Author](#author)
 
 ## Regex Components
 
@@ -29,43 +27,39 @@ This regex pattern is crucial for developers looking to implement robust passwor
 
 **`^` and `$`**
 
-Anchors specify the start (`^`) and end (`$`) of the string, ensuring the entire password matches the pattern.
+Anchors denote the start (`^`) and the end (`$`) of the string, ensuring the entire password matches the specified pattern. They are crucial in validating that the password does not contain any characters or sequences outside the defined criteria.
 
 ### Quantifiers
 
 **`{8,}`**
 
-Quantifiers indicate the number of characters. `{8,}` means the password must be at least eight characters long.
-
-### The OR Operator
-
-Not explicitly used in this regex pattern. The OR operator `|` is used to match one of several patterns.
+The `{8,}` quantifier indicates that the password must be at least eight characters in length. It is applied to the combined character set `[A-Za-z\d@$!%*?&]`, reinforcing the minimum length requirement for the password.
 
 ### Character Classes
 
 **`[A-Za-z\d@$!%*?&]`**
 
-Character classes match any character within the brackets. This regex uses several classes to allow lowercase and uppercase letters, digits, and special characters.
+Character classes match any single character within the brackets. In our regex, several classes are used to permit lowercase and uppercase letters, digits, and specified special characters, offering flexibility in password composition.
 
-### Grouping and Capturing
+### Lookahead Assertions
 
-**`(?=...)`**
+**`(?=.*[a-z])`, `(?=.*[A-Z])`, `(?=.*\d)`, `(?=.*[@$!%*?&])`**
 
-Grouping and capturing are used for look-ahead assertions, which ensure certain conditions are met without consuming characters.
+Lookahead assertions are utilised to check for the presence of certain character types within the password without consuming characters. They ensure the password contains at least one lowercase letter, one uppercase letter, a digit, and a special character from the set `[@$!%*?&]`.
 
-### Bracket Expressions
+## Examples
 
-Used within the character classes `[...]` to specify a set of characters to match.
+To demonstrate the application of our regex, consider the following examples:
 
-### Back-references
+- **Valid Passwords:**
+  - `Password1!` meets all criteria: it has uppercase and lowercase letters, a digit, and a special character.
+  - `Another$ecure2` also satisfies the requirements, showcasing the flexibility in character positions.
 
-Not used in this regex. Back-references allow a match to be referred again later in the regex.
+- **Invalid Passwords:**
+  - `pass` is too short and lacks uppercase letters, digits, and special characters.
+  - `password` meets the length requirement but fails to include uppercase letters, digits, and special characters.
 
-### Look-ahead and Look-behind
-
-**`(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])`**
-
-Look-ahead assertions ensure the presence of lowercase letters, uppercase letters, digits, and special characters anywhere ahead in the string without including them in the match.
+These examples elucidate how the regex filters passwords based on the defined strength criteria.
 
 ## Author
 
