@@ -1,6 +1,6 @@
 # Validating Hex Values with Regex
 
-This tutorial will explain the use of a regular expression (regex) to validate hexadecimal values. Hexadecimal values, often used to define colours in web development, consist of numbers and the letters A-F. Validating such values is crucial for ensuring input data adheres to expected formats in web applications.
+This tutorial will explain the use of a regular expression (regex) to validate hexadecimal values. which is often used to define colours in web development. It consist of numbers and the letters A-F. Validating such values is important for ensuring input data adheres to expected formats in web applications.
 
 ## Summary
 
@@ -10,7 +10,7 @@ Our focus will be on explaining a regex pattern designed for validating hex valu
 /^#?([a-f0-9]{6}|[a-f0-9]{3})$/
 ```
 
-This pattern is essential for developers looking to verify colour codes or other hex-based data inputs.
+This is useful for developers looking to verify colour codes or other hex-based data inputs.
 
 ## Table of Contents
 
