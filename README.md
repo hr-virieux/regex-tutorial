@@ -65,4 +65,7 @@ These examples illustrate how the regex filters hex values based on the defined 
 
 This tutorial was written by [Henry Virieux](https://github.com/hr-virieux).
 
-Github Repo is located [here](https://github.com/hr-virieux/regex-tutorial).
+GitHub Gist is located [here](https://gist.github.com/hr-virieux/36e29e39a835724a4af119807c9140e1).
+
+GitHub Repo is located [here](https://github.com/hr-virieux/regex-tutorial).
+
