@@ -1,23 +1,23 @@
-# Validating Password Strength with Regex
+# Validating Hex Values with Regex
 
-This tutorial will explain how to use a regular expression (regex) to validate password strength for front end development. A strong password validation ensures that the user's chosen password meets specific security criteria, reducing the risk of unauthorized access.
+This tutorial will explain the use of a regular expression (regex) to validate hexadecimal values. Hexadecimal values, often used to define colours in web development, consist of numbers and the letters A-F. Validating such values is crucial for ensuring input data adheres to expected formats in web applications.
 
 ## Summary
 
-The following will explain a regex pattern designed to enforce passwords that include a mix of uppercase and lowercase letters, numbers, and special characters, and are of a certain length. The regex we'll analyze is as follows:
+Our focus will be on explaining a regex pattern designed for validating hex values:
 
 ```regex
-/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+/^#?([a-f0-9]{6}|[a-f0-9]{3})$/
 ```
 
-This regex pattern is crucial for developers looking to implement robust password policies directly within their applications.
+This pattern is essential for developers looking to verify colour codes or other hex-based data inputs.
 
 ## Table of Contents
 
 - [Anchors](#anchors)
 - [Quantifiers](#quantifiers)
 - [Character Classes](#character-classes)
-- [Lookahead Assertions](#lookahead-assertions)
+- [Conditional OR](#conditional-or)
 - [Examples](#examples)
 - [Author](#author)
 
@@ -27,39 +27,39 @@ This regex pattern is crucial for developers looking to implement robust passwor
 
 **`^` and `$`**
 
-Anchors denote the start (`^`) and the end (`$`) of the string, ensuring the entire password matches the specified pattern. They are crucial in validating that the password does not contain any characters or sequences outside the defined criteria.
+Anchors are used to denote the beginning (`^`) and the end (`$`) of the string, ensuring the entire hex value matches the specified pattern without any leading or trailing characters.
 
 ### Quantifiers
 
-**`{8,}`**
+**`{6}` and `{3}`**
 
-The `{8,}` quantifier indicates that the password must be at least eight characters in length. It is applied to the combined character set `[A-Za-z\d@$!%*?&]`, reinforcing the minimum length requirement for the password.
+Quantifiers specify the number of characters. `{6}` means the hex value must have exactly six characters, and `{3}` indicates a shorter format with three characters. These quantifiers accommodate both full and shorthand hex colour codes.
 
 ### Character Classes
 
-**`[A-Za-z\d@$!%*?&]`**
+**`[a-f0-9]`**
 
-Character classes match any single character within the brackets. In our regex, several classes are used to permit lowercase and uppercase letters, digits, and specified special characters, offering flexibility in password composition.
+Character classes allow for the matching of any single character within the brackets. In our regex, `[a-f0-9]` matches any hexadecimal character, which includes digits (`0-9`) and lowercase letters (`a-f`). This ensures that the input is within the hexadecimal range.
 
-### Lookahead Assertions
+### Conditional OR
 
-**`(?=.*[a-z])`, `(?=.*[A-Z])`, `(?=.*\d)`, `(?=.*[@$!%*?&])`**
+**`|`**
 
-Lookahead assertions are utilised to check for the presence of certain character types within the password without consuming characters. They ensure the password contains at least one lowercase letter, one uppercase letter, a digit, and a special character from the set `[@$!%*?&]`.
+The conditional OR (`|`) allows for the matching of one of several subpatterns. In this case, it distinguishes between full (`{6}` characters) and shorthand (`{3}` characters) hex formats, providing flexibility in what is considered a valid hex value.
 
 ## Examples
 
 To demonstrate the application of our regex, consider the following examples:
 
-- **Valid Passwords:**
-  - `Password1!` meets all criteria: it has uppercase and lowercase letters, a digit, and a special character.
-  - `Another$ecure2` also satisfies the requirements, showcasing the flexibility in character positions.
+- **Valid Hex Values:**
+  - `#ffffff` matches the full hex format.
+  - `#abc` matches the shorthand hex format.
+  
+- **Invalid Hex Values:**
+  - `#gggggg` is invalid as `g` is outside the hexadecimal range.
+  - `123456` is invalid as it lacks the leading `#`.
 
-- **Invalid Passwords:**
-  - `pass` is too short and lacks uppercase letters, digits, and special characters.
-  - `password` meets the length requirement but fails to include uppercase letters, digits, and special characters.
-
-These examples elucidate how the regex filters passwords based on the defined strength criteria.
+These examples illustrate how the regex filters hex values based on the defined criteria, ensuring only valid hex codes are accepted.
 
 ## Author
 
